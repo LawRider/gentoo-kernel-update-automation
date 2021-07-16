@@ -34,7 +34,7 @@ echo -n "Do you wish to make manual adjustments to kernel config? "
 while read
 do
     case $REPLY in
-    [Yy]* )  answer=yes; make menuconfig;;
+    [Yy]* )  answer=yes; make menuconfig; break 2;;
     [Nn]* )  answer=no; break 2;;
      * )  echo -n "Invalid Option ('$REPLY' given). Please answer 'y' or 'n'. " >&2
           if [ $((++retries)) -ge $max_retries ]; then break 2; fi;;
