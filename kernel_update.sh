@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cur=$(uname -r)
-last=$(eselect --brief kernel list|tail -1|cut -d- -f2,3)
-selected=$(eselect kernel list|grep '*'|awk '{print$2}'|cut -d- -f2,3)
+last=$(eselect --brief kernel list|tail -1|cut -d- -f2-)
+selected=$(eselect kernel list|grep '*'|awk '{print$2}'|cut -d- -f2-)
 echo "Checking if the last version of kernel is already in use..."
 echo "Current version of kernel in use is $cur"
 echo "The last version of kernel is $last"
@@ -34,7 +34,7 @@ echo -n "Do you wish to make manual adjustments to kernel config? "
 while read
 do
     case $REPLY in
-    [Yy]* )  answer=yes; make menuconfig;;
+    [Yy]* )  answer=yes; make menuconfig; break 2;;
     [Nn]* )  answer=no; break 2;;
      * )  echo -n "Invalid Option ('$REPLY' given). Please answer 'y' or 'n'. " >&2
           if [ $((++retries)) -ge $max_retries ]; then break 2; fi;;
