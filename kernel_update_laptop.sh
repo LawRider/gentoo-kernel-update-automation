@@ -4,9 +4,9 @@ cur=$(uname -r)
 last=$(eselect --brief kernel list|tail -1|cut -d- -f2-)
 selected=$(eselect kernel list|grep '*'|awk '{print$2}'|cut -d- -f2-)
 echo "Checking if the last version of kernel is already in use..."
-echo "Current version of kernel in use is $cur"
-echo "The last version of kernel is $last"
-echo "The selected version of kernel is $selected"
+echo "Current version of kernel in use is $(echo $cur|sed 's/-gentoo//')"
+echo "The last version of kernel is $(echo $last|sed 's/-gentoo//')"
+echo "The selected version of kernel is $(echo $selected|sed 's/-gentoo//')"
 
 if [ $last == $cur ]
 then
@@ -50,7 +50,7 @@ make install
 echo "Backing up kernel config..."
 cp .config /etc/kernels/config-$last
 echo "Generating initramfs..."
-genkernel initramfs --luks --lvm
+genkernel initramfs --luks --lvm --microcode-initramfs
 echo "Updating grub config..."
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "Rebuilding kernel modules..."
