@@ -6,10 +6,10 @@ then echo "2 versions are installed. No removal is needed"; exit 1
 else echo "Extra version of kernel is found"
 fi
 
-cur=$(uname -r|cut -d- -f1-|sed 's/-gentoo//')
-old=$(eselect --brief kernel list|head -1|cut -d- -f2-|sed 's/-gentoo//')
-echo "Current version of kernel in use is $cur"
-echo "The old version of kernel is $old"
+cur=$(uname -r|cut -d- -f1-)
+old=$(eselect --brief kernel list|head -1|cut -d- -f2-)
+echo "Current version of kernel in use is $(echo $cur|sed 's/-gentoo//')"
+echo "The old version of kernel is $(echo $old|sed 's/-gentoo//')"
 read -p "Would you like to remove old version of kernel? " yn
 case $yn in 
     [Yy]* ) ;;
