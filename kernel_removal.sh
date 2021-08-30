@@ -23,5 +23,5 @@ sed "/$old/d" -i /var/lib/portage/world && echo "World file has been updated"
 echo "Removing old version of kernel sources"
 emerge -ac
 echo "Removing old kernel files, modules, boot-related files. The following folders/files will be removed:"
-du -shc /usr/src/linux-$old* /lib/modules/$old* /boot/config-$old* /boot/initramfs-$old* /boot/System.map-$old* /boot/vmlinuz-$old*
-rm -rf /usr/src/linux-$old* /lib/modules/$old* /boot/config-$old* /boot/initramfs-$old* /boot/System.map-$old* /boot/vmlinuz-$old*
+du -shc /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
+rm -rf /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
