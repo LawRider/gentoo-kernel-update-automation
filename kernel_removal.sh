@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Checking if there are more than 2 versions of kernel installed..."
+echo "Checking how many kernel versions are installed..."
 if [ $(eselect --brief kernel list|wc -l) -lt 3 ]
-then echo "2 versions are installed. No removal is needed"; exit 1
+then echo "Less than 3 versions are installed. No removal is needed"; exit 1
 else echo "Extra version of kernel is found"
 fi
 
