@@ -40,5 +40,5 @@ if [[ $old == *"-r"* ]]
 then old=$(echo $old|sed s%-r%-gentoo-r%)
 else old="${old}-gentoo"
 fi
-du -shc /usr/src/linux-$old /lib/modules/$old /boot/config-$old* /boot/initramfs-$old.img* /boot/System.map-$old* /boot/vmlinuz-$old*
-rm -rf /usr/src/linux-$old /lib/modules/$old /boot/config-$old* /boot/initramfs-$old.img* /boot/System.map-$old* /boot/vmlinuz-$old*
+du -shc /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
+rm -rf /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
