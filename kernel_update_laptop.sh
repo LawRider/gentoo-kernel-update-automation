@@ -46,11 +46,14 @@ make -j$(nproc)
 echo "Installing modules..."
 make modules_install
 echo "Installing kernel..."
-make install
+#make install
+cp .config /boot/config-6.6.62-gentoo-x86_64
+cp System.map /boot/System.map-6.6.62-gentoo-x86_64
+cp arch/x86/boot/bzImage /boot/vmlinuz-6.6.62-gentoo-x86_64
 echo "Backing up kernel config..."
 cp .config /etc/kernels/config-$last
 echo "Generating initramfs..."
-genkernel initramfs --luks --lvm --microcode-initramfs
+genkernel initramfs --luks --lvm
 echo "Updating grub config..."
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "Rebuilding kernel modules..."

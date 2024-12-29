@@ -6,9 +6,9 @@ then echo "Less than 3 versions are installed. No removal is needed"; exit 1
 else echo "Extra version of kernel is found"
 fi
 
-cur=$(uname -r|cut -d- -f1-|sed s%-gentoo%%)
+cur=$(uname -r|cut -d- -f1-|sed s%-gentoo%%|sed s%-x86_64%%)
 #cur=$(uname -r|cut -d- -f1)
-old=$(eselect --brief kernel list|head -1|cut -d- -f2-|sed s%-gentoo%%)
+old=$(eselect --brief kernel list|head -1|cut -d- -f2-|sed s%-gentoo%%|sed s%-x86_64%%)
 #old=$(eselect --brief kernel list|head -1|cut -d- -f2)
 #echo "Current version of kernel in use is $(echo $cur|sed 's/-gentoo//')"
 echo "Current version of kernel in use is $(echo $cur)"
@@ -40,5 +40,5 @@ if [[ $old == *"-r"* ]]
 then old=$(echo $old|sed s%-r%-gentoo-r%)
 else old="${old}-gentoo"
 fi
-du -shc /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
-rm -rf /usr/src/linux-$old /lib/modules/$old /boot/config-$old /boot/initramfs-$old.img /boot/System.map-$old /boot/vmlinuz-$old
+du -shc /usr/src/linux-${old}-x86_64 /lib/modules/${old}-x86_64 /boot/config-${old}-x86_64 /boot/initramfs-${old}-x86_64.img /boot/System.map-${old}-x86_64 /boot/vmlinuz-${old}-x86_64
+rm -rf /usr/src/linux-${old}-x86_64 /lib/modules/${old}-x86_64 /boot/config-${old}-x86_64 /boot/initramfs-${old}-x86_64.img /boot/System.map-${old}-x86_64 /boot/vmlinuz-${old}-x86_64
